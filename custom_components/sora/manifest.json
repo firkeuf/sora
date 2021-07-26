@@ -1,0 +1,11 @@
+{
+  "domain": "sora",
+  "name": "Sora",
+  "config_flow": true,
+  "documentation": "https://www.home-assistant.io/integrations/sora",
+  "codeowners": [
+    "@firkeuf"
+  ],
+  "version": "0.1",
+  "iot_class": "local_polling"
+}
