@@ -1,6 +1,6 @@
 ## Home Assistant air quality sensor component for health + wellness
 [![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/custom-components/hacs)
-<a href="https://www.athlios.com/sora" ><img src="https://github.com/firkeuf/sora/raw/main/img/sora_logo.png"></a>
+<a href="https://www.athlios.com/sora" ><img src="https://github.com/firkeuf/sora/raw/master/img/sora_logo.png"></a>
 
 ### The first purpose-designed air quality display and safety sensor array for health + wellness.
 
