@@ -60,27 +60,35 @@ class SoraDataUpdateCoordinator(DataUpdateCoordinator):
         result = {}
         result.update({k:v for e in response.get('General') for (k,v) in e.items()})
         result.update({k:v for e in response.get('Averages') for (k,v) in e.items()})
-        result.update({k:v for e in response.get('Misc') for (k,v) in e.items()})
-        result.update({'CO': response.get('CO')[0].popitem()[1]})
-        result.update({'NH3': response.get('NH3')[0].popitem()[1]})
-        result.update({'NO2': response.get('NO2')[0].popitem()[1]})
-        result.update({'C3H8': response.get('C3H8')[0].popitem()[1]})
-        result.update({'C4H10': response.get('C4H10')[0].popitem()[1]})
-        result.update({'CH4': response.get('CH4')[0].popitem()[1]})
-        result.update({'H2': response.get('H2')[0].popitem()[1]})
-        result.update({'C2H5OH': max(response.get('C2H5OH')[0].popitem()[1], response.get('C2H5OH')[1].popitem()[1])})
-        result.update({'P0P3': mean([float(response.get('ParticulateTenthLiterAir')[0].get('Ap3')),
-                                     float(response.get('ParticulateTenthLiterAir')[1].get('Bp3'))])})
-        result.update({'P0P5': mean([float(response.get('ParticulateTenthLiterAir')[0].get('Ap5')),
-                                     float(response.get('ParticulateTenthLiterAir')[1].get('Bp5'))])})
-        result.update({'P1': mean([float(response.get('ParticulateTenthLiterAir')[0].get('A1')),
-                                   float(response.get('ParticulateTenthLiterAir')[1].get('B1'))])})
-        result.update({'P5': mean([float(response.get('ParticulateTenthLiterAir')[0].get('A5')),
-                                   float(response.get('ParticulateTenthLiterAir')[1].get('B5'))])})
-        result.update({'P10': mean([float(response.get('ParticulateTenthLiterAir')[0].get('A10')),
-                                   float(response.get('ParticulateTenthLiterAir')[1].get('B10'))])})
 
-        result.update({'P2P5': mean([float(response.get('ParticulateConcentration')[0].get('A2p5')),
-                                     float(response.get('ParticulateConcentration')[1].get('B2p5'))])})
+        if result.get('Model') == 'Pro':
+            result.update({'C2H5OH': max(response.get('C2H5OH')[0].popitem()[1], response.get('C2H5OH')[1].popitem()[1])})
+            result.update({k:v for e in response.get('Misc') for (k,v) in e.items()})
+            result.update({'CO': response.get('CO')[0].popitem()[1]})
+            result.update({'NH3': response.get('NH3')[0].popitem()[1]})
+            result.update({'NO2': response.get('NO2')[0].popitem()[1]})
+            result.update({'C3H8': response.get('C3H8')[0].popitem()[1]})
+            result.update({'C4H10': response.get('C4H10')[0].popitem()[1]})
+            result.update({'CH4': response.get('CH4')[0].popitem()[1]})
+            result.update({'H2': response.get('H2')[0].popitem()[1]})
+            result.update({'P0P3': mean([float(response.get('ParticulateTenthLiterAir')[0].get('Ap3')),
+                                         float(response.get('ParticulateTenthLiterAir')[1].get('Bp3'))])})
+            result.update({'P0P5': mean([float(response.get('ParticulateTenthLiterAir')[0].get('Ap5')),
+                                         float(response.get('ParticulateTenthLiterAir')[1].get('Bp5'))])})
+            result.update({'P1': mean([float(response.get('ParticulateTenthLiterAir')[0].get('A1')),
+                                       float(response.get('ParticulateTenthLiterAir')[1].get('B1'))])})
+            result.update({'P5': mean([float(response.get('ParticulateTenthLiterAir')[0].get('A5')),
+                                       float(response.get('ParticulateTenthLiterAir')[1].get('B5'))])})
+            result.update({'P10': mean([float(response.get('ParticulateTenthLiterAir')[0].get('A10')),
+                                        float(response.get('ParticulateTenthLiterAir')[1].get('B10'))])})
+            result.update({'P2P5': mean([float(response.get('ParticulateConcentration')[0].get('A2p5')),
+                                         float(response.get('ParticulateConcentration')[1].get('B2p5'))])})
+        else:
+            result.update({'P0P3': response.get('ParticulateTenthLiterAir')[0].get('Ap3')})
+            result.update({'P0P5': response.get('ParticulateTenthLiterAir')[0].get('Ap5')})
+            result.update({'P1': response.get('ParticulateTenthLiterAir')[0].get('A1')})
+            result.update({'P5': response.get('ParticulateTenthLiterAir')[0].get('A5')})
+            result.update({'P10': response.get('ParticulateTenthLiterAir')[0].get('A10')})
+            result.update({'P2P5': response.get('ParticulateConcentration')[0].get('A2p5')})
 
         return result

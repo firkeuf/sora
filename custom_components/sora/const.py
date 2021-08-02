@@ -36,7 +36,8 @@ NAME: Final = "Sora"
 ATTRIBUTION: Final = "Data from Sora"
 DOMAIN: Final = "sora"
 MODEL: Final = "Model"
-
+MODEL_PRO: Final = "Pro"
+MODEL_MINI: Final = "Mini"
 
 
 API = {

@@ -58,6 +58,8 @@ class SoraSensor(CoordinatorEntity, SensorEntity):
     @property
     def state(self) -> StateType:
         """Return the state of the entity."""
+        if not self.coordinator.is_metric and self.kind == "Temperature":
+            return float(self.coordinator.data.get(self.kind)) * 1.8 + 32
         return self.coordinator.data.get(self.kind)
 
     @property
@@ -95,4 +97,6 @@ class SoraSensor(CoordinatorEntity, SensorEntity):
     @property
     def entity_registry_enabled_default(self) -> bool:
         """Return if the entity should be enabled when first added to the entity registry."""
+        if not self.coordinator.data.get(self.kind):
+            return False
         return self._description[ATTR_ENABLED]
