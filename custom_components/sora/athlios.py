@@ -16,6 +16,10 @@ class InvalidDongleID(HomeAssistantError):
     """Error to indicate invalid Dongle ID."""
 
 
+class InvalidRate(HomeAssistantError):
+    """Error to indicate invalid Rate."""
+
+
 async def async_get(hass: HomeAssistant, host: str, path: str, protocol: str) -> dict:
     url = '{0}://{1}{2}'.format(protocol, host, path)
     websession = async_get_clientsession(hass)

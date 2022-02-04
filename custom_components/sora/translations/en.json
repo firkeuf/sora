@@ -7,13 +7,15 @@
             "cannot_connect": "Failed to connect",
             "invalid_auth": "Invalid authentication",
             "invalid_dongle_id": "Invalid Dongle ID",
+            "invalid_rate": "Sampling rate must be more than 2 and less than 1000 seconds",
             "unknown": "Unexpected error"
         },
         "step": {
             "user": {
                 "data": {
                     "host": "Host",
-                    "name": "Name"
+                    "name": "Name",
+                    "rate": "Sample Rate"
                 }
             }
         }

@@ -11,8 +11,8 @@ from homeassistant.core import HomeAssistant
 from homeassistant.data_entry_flow import FlowResult
 from homeassistant.const import CONF_HOST, CONF_NAME
 
-from .const import DOMAIN, API
-from .athlios import async_get, CannotConnect, InvalidDongleID
+from .const import DOMAIN, API, CONF_RATE
+from .athlios import async_get, CannotConnect, InvalidDongleID, InvalidRate
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -34,7 +34,7 @@ async def validate_input(hass: HomeAssistant, data: dict[str, Any]) -> dict[str,
     Data has the keys from STEP_USER_DATA_SCHEMA with values provided by the user.
     """
 
-    host = data.get('host')
+    host = data.get(CONF_HOST)
     response = await async_get(hass, host, API['System'], API['protocol'])
     sora_id = response.get('DongleID')
     if sora_id is None:
@@ -43,7 +43,11 @@ async def validate_input(hass: HomeAssistant, data: dict[str, Any]) -> dict[str,
     name = data.get(CONF_NAME)
     title = data.get(CONF_NAME)
 
-    return {CONF_NAME: name, "title": title, "sora_id": sora_id, CONF_HOST: data[CONF_HOST]}
+    rate = data.get(CONF_RATE)
+    if rate < 2 or rate > 1000:
+        raise InvalidRate
+
+    return {CONF_NAME: name, "title": title, "sora_id": sora_id, CONF_HOST: data[CONF_HOST], CONF_RATE: rate}
 
 
 class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
@@ -82,8 +86,9 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     def data_schema(self):
         return  vol.Schema(
             {
-                vol.Required(CONF_HOST): str,
+                vol.Required(CONF_HOST, default='192.168.19.103'): str,
                 vol.Optional(CONF_NAME, default=f'Sora {self.hass.config.location_name}'): str,
+                vol.Required(CONF_RATE, default=60): int,
             }
         )
 

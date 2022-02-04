@@ -5,11 +5,11 @@ from typing import Any, Dict
 from datetime import timedelta
 from statistics import mean
 
-from homeassistant.config_entries import ConfigEntry
+from homeassistant.config_entries import ConfigEntry, current_entry
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
 
-from .const import DOMAIN, API
+from .const import DOMAIN, API, CONF_RATE
 from .athlios import async_get
 
 import logging
@@ -48,7 +48,8 @@ class SoraDataUpdateCoordinator(DataUpdateCoordinator):
     """Class to manage fetching data from Sora API."""
     def __init__(self, hass: HomeAssistant, ) -> None:
         """Initialize."""
-        update_interval = timedelta(seconds=10)
+        self.config_entry = current_entry.get()
+        update_interval = timedelta(seconds=self.config_entry.data.get(CONF_RATE))
         self.is_metric = hass.config.units.is_metric
         _LOGGER.debug("Data will be update every %s", update_interval)
         super().__init__(hass, _LOGGER, name=DOMAIN, update_interval=update_interval)

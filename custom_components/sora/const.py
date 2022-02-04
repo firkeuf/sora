@@ -39,6 +39,8 @@ MODEL: Final = "Model"
 MODEL_PRO: Final = "Pro"
 MODEL_MINI: Final = "Mini"
 
+CONF_RATE: Final = "rate"
+
 
 API = {
     "protocol": "http",
