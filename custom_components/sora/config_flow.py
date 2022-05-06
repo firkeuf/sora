@@ -1,5 +1,4 @@
 """Config flow for Sora integration."""
-"""Config flow for Sora integration."""
 from __future__ import annotations
 
 import logging
