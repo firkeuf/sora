@@ -1,4 +1,5 @@
 """Config flow for Sora integration."""
+"""Config flow for Sora integration."""
 from __future__ import annotations
 
 import logging
@@ -36,7 +37,7 @@ async def validate_input(hass: HomeAssistant, data: dict[str, Any]) -> dict[str,
 
     host = data.get(CONF_HOST)
     response = await async_get(hass, host, API['System'], API['protocol'])
-    sora_id = response.get('DongleID')
+    sora_id = response.get('DongleID') or response.get('HardwareID')
     if sora_id is None:
         raise InvalidDongleID
 
