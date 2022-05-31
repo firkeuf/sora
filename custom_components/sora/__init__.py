@@ -106,24 +106,24 @@ class SoraDataUpdateCoordinator(DataUpdateCoordinator):
                 result.update({'C4H10': max([i for i in response.get('C4H10').values() if type(i) is str])})
                 result.update({'CH4': max([i for i in response.get('CH4').values() if type(i) is str])})
                 result.update({'H2': max([i for i in response.get('H2').values() if type(i) is str])})
-                result.update({'P0P3': mean([float(response.get('ParticulateTenthLiterAir').get('0').get('Ap3')),
-                                             float(response.get('ParticulateTenthLiterAir').get('1').get('Bp3'))])})
-                result.update({'P0P5': mean([float(response.get('ParticulateTenthLiterAir').get('0').get('Ap5')),
-                                             float(response.get('ParticulateTenthLiterAir').get('1').get('Bp5'))])})
-                result.update({'P1': mean([float(response.get('ParticulateTenthLiterAir').get('0').get('A1')),
-                                           float(response.get('ParticulateTenthLiterAir').get('1').get('B1'))])})
-                result.update({'P5': mean([float(response.get('ParticulateTenthLiterAir').get('0').get('A5')),
-                                           float(response.get('ParticulateTenthLiterAir').get('1').get('B5'))])})
-                result.update({'P10': mean([float(response.get('ParticulateTenthLiterAir').get('0').get('A10')),
-                                            float(response.get('ParticulateTenthLiterAir').get('1').get('B10'))])})
-                result.update({'P2P5': mean([float(response.get('ParticulateTenthLiterAir').get('0').get('A2p5')),
-                                             float(response.get('ParticulateTenthLiterAir').get('1').get('B2p5'))])})
+                result.update({'P0P3': mean([float(response.get('Particulate').get('TenthLiterAir').get('0').get('Ap3')),
+                                             float(response.get('Particulate').get('TenthLiterAir').get('1').get('Bp3'))])})
+                result.update({'P0P5': mean([float(response.get('Particulate').get('TenthLiterAir').get('0').get('Ap5')),
+                                             float(response.get('Particulate').get('TenthLiterAir').get('1').get('Bp5'))])})
+                result.update({'P1': mean([float(response.get('Particulate').get('TenthLiterAir').get('0').get('A1')),
+                                           float(response.get('Particulate').get('TenthLiterAir').get('1').get('B1'))])})
+                result.update({'P5': mean([float(response.get('Particulate').get('TenthLiterAir').get('0').get('A5')),
+                                           float(response.get('Particulate').get('TenthLiterAir').get('1').get('B5'))])})
+                result.update({'P10': mean([float(response.get('Particulate').get('TenthLiterAir').get('0').get('A10')),
+                                            float(response.get('Particulate').get('TenthLiterAir').get('1').get('B10'))])})
+                result.update({'P2P5': mean([float(response.get('Particulate').get('TenthLiterAir').get('0').get('A2p5')),
+                                             float(response.get('Particulate').get('TenthLiterAir').get('1').get('B2p5'))])})
             else:
-                result.update({'P0P3': response.get('ParticulateTenthLiterAir').get('0').get('Ap3')})
-                result.update({'P0P5': response.get('ParticulateTenthLiterAir').get('0').get('Ap5')})
-                result.update({'P1': response.get('ParticulateTenthLiterAir').get('0').get('A1')})
-                result.update({'P5': response.get('ParticulateTenthLiterAir').get('0').get('A5')})
-                result.update({'P10': response.get('ParticulateTenthLiterAir').get('0').get('A10')})
-                result.update({'P2P5': response.get('ParticulateTenthLiterAir').get('0').get('A2p5')})
+                result.update({'P0P3': response.get('Particulate').get('TenthLiterAir').get('0').get('Ap3')})
+                result.update({'P0P5': response.get('Particulate').get('TenthLiterAir').get('0').get('Ap5')})
+                result.update({'P1': response.get('Particulate').get('TenthLiterAir').get('0').get('A1')})
+                result.update({'P5': response.get('Particulate').get('TenthLiterAir').get('0').get('A5')})
+                result.update({'P10': response.get('Particulate').get('TenthLiterAir').get('0').get('A10')})
+                result.update({'P2P5': response.get('Particulate').get('TenthLiterAir').get('0').get('A2p5')})
 
         return result
