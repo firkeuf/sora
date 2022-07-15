@@ -118,6 +118,13 @@ class SoraDataUpdateCoordinator(DataUpdateCoordinator):
                                             float(response.get('Particulate').get('TenthLiterAir').get('1').get('B10'))])})
                 result.update({'P2P5': mean([float(response.get('Particulate').get('TenthLiterAir').get('0').get('A2p5')),
                                              float(response.get('Particulate').get('TenthLiterAir').get('1').get('B2p5'))])})
+            elif result.get('Model') == 'v2':
+                result.update({'P0P3': response.get('ParticulateTenthLiterAir').get('0').get('Ap3')})
+                result.update({'P0P5': response.get('ParticulateTenthLiterAir').get('0').get('Ap5')})
+                result.update({'P1': response.get('ParticulateTenthLiterAir').get('0').get('A1')})
+                result.update({'P5': response.get('ParticulateTenthLiterAir').get('0').get('A5')})
+                result.update({'P10': response.get('ParticulateTenthLiterAir').get('0').get('A10')})
+                result.update({'P2P5': response.get('ParticulateTenthLiterAir').get('0').get('A2p5')})
             else:
                 result.update({'P0P3': response.get('Particulate').get('TenthLiterAir').get('0').get('Ap3')})
                 result.update({'P0P5': response.get('Particulate').get('TenthLiterAir').get('0').get('Ap5')})

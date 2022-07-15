@@ -38,6 +38,7 @@ DOMAIN: Final = "sora"
 MODEL: Final = "Model"
 MODEL_PRO: Final = "Pro"
 MODEL_MINI: Final = "Mini"
+MODEL_v2: Final = "Sora v2"
 
 CONF_RATE: Final = "rate"
 
