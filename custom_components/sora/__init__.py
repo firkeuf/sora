@@ -95,7 +95,9 @@ class SoraDataUpdateCoordinator(DataUpdateCoordinator):
                 result.update({'P2P5': response.get('ParticulateConcentration')[0].get('A2p5')})
         else:  # New API
             result.update(response.get('General'))
-            result.update(response.get('Averages'))
+            if response.get('Averages'):
+                result.update(response.get('Averages'))
+
             if result.get('Model') == 'Pro':
                 result.update(response.get('Misc'))
                 result.update({'C2H5OH': max([i for i in response.get('C2H5OH').values() if type(i) is str])})
@@ -119,12 +121,16 @@ class SoraDataUpdateCoordinator(DataUpdateCoordinator):
                 result.update({'P2P5': mean([float(response.get('Particulate').get('TenthLiterAir').get('0').get('A2p5')),
                                              float(response.get('Particulate').get('TenthLiterAir').get('1').get('B2p5'))])})
             elif result.get('Model') == 'v2':
-                result.update({'P0P3': response.get('ParticulateTenthLiterAir').get('0').get('Ap3')})
-                result.update({'P0P5': response.get('ParticulateTenthLiterAir').get('0').get('Ap5')})
-                result.update({'P1': response.get('ParticulateTenthLiterAir').get('0').get('A1')})
-                result.update({'P5': response.get('ParticulateTenthLiterAir').get('0').get('A5')})
-                result.update({'P10': response.get('ParticulateTenthLiterAir').get('0').get('A10')})
-                result.update({'P2P5': response.get('ParticulateTenthLiterAir').get('0').get('A2p5')})
+                result.update({'Temperature': response.get('Ambient').get('Temperature').get('Value')})
+                result.update({'Humidity': response.get('Ambient').get('Humidity')})
+                result.update({'LowestCO2': response.get('Ambient').get('LowestCO2')})
+                result.update({'CO2': response.get('Ambient').get('CO2')})
+                result.update({'P0P3': response.get('Particulate').get('TenthLiterAir').get('Ap3')})
+                result.update({'P0P5': response.get('Particulate').get('TenthLiterAir').get('Ap5')})
+                result.update({'P1': response.get('Particulate').get('TenthLiterAir').get('A1')})
+                result.update({'P5': response.get('Particulate').get('TenthLiterAir').get('A5')})
+                result.update({'P10': response.get('Particulate').get('TenthLiterAir').get('A10')})
+                result.update({'P2P5': response.get('Particulate').get('TenthLiterAir').get('A2p5')})
             else:
                 result.update({'P0P3': response.get('Particulate').get('TenthLiterAir').get('0').get('Ap3')})
                 result.update({'P0P5': response.get('Particulate').get('TenthLiterAir').get('0').get('Ap5')})
