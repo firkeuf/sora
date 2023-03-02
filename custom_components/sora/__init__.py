@@ -50,7 +50,7 @@ class SoraDataUpdateCoordinator(DataUpdateCoordinator):
         """Initialize."""
         self.config_entry = current_entry.get()
         update_interval = timedelta(seconds=self.config_entry.data.get(CONF_RATE))
-        self.is_metric = hass.config.units.is_metric
+        self.units = hass.config.units
         _LOGGER.debug("Data will be update every %s", update_interval)
         super().__init__(hass, _LOGGER, name=DOMAIN, update_interval=update_interval)
 
@@ -97,6 +97,12 @@ class SoraDataUpdateCoordinator(DataUpdateCoordinator):
             result.update(response.get('General'))
             if response.get('Averages'):
                 result.update(response.get('Averages'))
+
+            #if response.get('Ambient'):
+            #    result.update(response.get('Ambient'))
+#
+            #if response.get('Particulate'):
+            #    result.update(response.get('Particulate'))
 
             if result.get('Model') == 'Pro':
                 result.update(response.get('Misc'))

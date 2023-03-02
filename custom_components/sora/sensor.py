@@ -6,6 +6,7 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity
 from homeassistant.helpers.typing import StateType
 from homeassistant.helpers.entity import DeviceInfo
 from homeassistant.helpers.device_registry import DeviceEntryType
+from homeassistant.util.unit_system import METRIC_SYSTEM
 
 
 import logging
@@ -60,7 +61,7 @@ class SoraSensor(CoordinatorEntity, SensorEntity):
     @property
     def state(self) -> StateType:
         """Return the state of the entity."""
-        if not self.coordinator.is_metric and self.kind == "Temperature":
+        if not self.coordinator.units is METRIC_SYSTEM and self.kind == "Temperature":
             return float(self.coordinator.data.get(self.kind)) * 1.8 + 32
         return self.coordinator.data.get(self.kind)
 
@@ -81,7 +82,7 @@ class SoraSensor(CoordinatorEntity, SensorEntity):
     @property
     def unit_of_measurement(self):
         """Return the unit the value is expressed in."""
-        if self.coordinator.is_metric:
+        if self.coordinator.units is METRIC_SYSTEM:
             return self._description[ATTR_UNIT_METRIC]
         return self._description[ATTR_UNIT_IMPERIAL]
 
