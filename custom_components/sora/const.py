@@ -46,7 +46,7 @@ CONF_RATE: Final = "rate"
 API = {
     "protocol": "http",
     "System": "/webapi/v1/Horizon/System/View",
-    "Device": "/webapi/v1/Horizon/Device/View",
+    "Device": "/webapi/v1/Horizon/Device/DataType",
 }
 
 
