@@ -4,15 +4,15 @@ from __future__ import annotations
 from typing import Final, TypedDict
 
 from homeassistant.components.sensor import (
-    ATTR_STATE_CLASS,
-    SensorStateClass,
-    SensorDeviceClass
+    ATTR_STATE_CLASS
+
 )
 
 from homeassistant.const import (
+    SensorStateClass,
+    SensorDeviceClass,
     ATTR_DEVICE_CLASS,
     ATTR_ICON,
-    DEVICE_CLASS_TEMPERATURE,
     PERCENTAGE,
     TEMP_CELSIUS,
     TEMP_FAHRENHEIT,
@@ -49,7 +49,7 @@ API = {
 
 SENSOR_TYPES: Final[dict[str, SensorDescription]] = {
     "Temperature": {
-        ATTR_DEVICE_CLASS: DEVICE_CLASS_TEMPERATURE,
+        ATTR_DEVICE_CLASS: SensorDeviceClass.TEMPERATURE,
         ATTR_ICON: None,
         ATTR_LABEL: "Temperature",
         ATTR_UNIT_METRIC: TEMP_CELSIUS,
