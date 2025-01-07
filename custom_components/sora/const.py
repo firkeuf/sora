@@ -6,10 +6,7 @@ from typing import Final, TypedDict
 from homeassistant.components.sensor import (
     ATTR_STATE_CLASS,
     SensorStateClass,
-    DEVICE_CLASS_PRESSURE,
-    DEVICE_CLASS_HUMIDITY,
-    DEVICE_CLASS_CO2,
-    DEVICE_CLASS_CO
+    SensorDeviceClass
 )
 
 from homeassistant.const import (
@@ -61,7 +58,7 @@ SENSOR_TYPES: Final[dict[str, SensorDescription]] = {
         ATTR_STATE_CLASS: SensorStateClass.MEASUREMENT,
     },
     "Humidity": {
-        ATTR_DEVICE_CLASS: DEVICE_CLASS_HUMIDITY,
+        ATTR_DEVICE_CLASS: SensorDeviceClass.HUMIDITY,
         ATTR_ICON: None,
         ATTR_LABEL: "Humidity",
         ATTR_UNIT_METRIC: PERCENTAGE,
@@ -70,7 +67,7 @@ SENSOR_TYPES: Final[dict[str, SensorDescription]] = {
         ATTR_STATE_CLASS: SensorStateClass.MEASUREMENT,
     },
     "AbsolutePressure": {
-        ATTR_DEVICE_CLASS: DEVICE_CLASS_PRESSURE,
+        ATTR_DEVICE_CLASS: SensorDeviceClass.PRESSURE,
         ATTR_ICON: None,
         ATTR_LABEL: "Absolute Pressure",
         ATTR_UNIT_METRIC: PRESSURE_MBAR,
@@ -88,7 +85,7 @@ SENSOR_TYPES: Final[dict[str, SensorDescription]] = {
         ATTR_STATE_CLASS: SensorStateClass.MEASUREMENT,
     },
     "CO2": {
-        ATTR_DEVICE_CLASS: DEVICE_CLASS_CO2,
+        ATTR_DEVICE_CLASS: SensorDeviceClass.CO2,
         ATTR_ICON: None,
         ATTR_LABEL: "CO2",
         ATTR_UNIT_METRIC: CONCENTRATION_PARTS_PER_MILLION,
@@ -99,7 +96,7 @@ SENSOR_TYPES: Final[dict[str, SensorDescription]] = {
 
 
     'CO': {
-        ATTR_DEVICE_CLASS: DEVICE_CLASS_CO,
+        ATTR_DEVICE_CLASS: SensorDeviceClass.CO,
         ATTR_ICON: None,
         ATTR_LABEL: "CO",
         ATTR_UNIT_METRIC: CONCENTRATION_PARTS_PER_BILLION,
