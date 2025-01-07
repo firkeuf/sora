@@ -11,12 +11,11 @@ from homeassistant.components.sensor import (
 )
 
 from homeassistant.const import (
+    UnitOfTemperature,
+    UnitOfPressure,
     ATTR_DEVICE_CLASS,
     ATTR_ICON,
     PERCENTAGE,
-    TEMP_CELSIUS,
-    TEMP_FAHRENHEIT,
-    PRESSURE_MBAR,
     CONCENTRATION_PARTS_PER_BILLION,
     CONCENTRATION_PARTS_PER_MILLION,
     CONCENTRATION_MICROGRAMS_PER_CUBIC_METER
@@ -52,8 +51,8 @@ SENSOR_TYPES: Final[dict[str, SensorDescription]] = {
         ATTR_DEVICE_CLASS: SensorDeviceClass.TEMPERATURE,
         ATTR_ICON: None,
         ATTR_LABEL: "Temperature",
-        ATTR_UNIT_METRIC: TEMP_CELSIUS,
-        ATTR_UNIT_IMPERIAL: TEMP_FAHRENHEIT,
+        ATTR_UNIT_METRIC: UnitOfTemperature.CELSIUS,
+        ATTR_UNIT_IMPERIAL: UnitOfTemperature.FAHRENHEIT,
         ATTR_ENABLED: True,
         ATTR_STATE_CLASS: SensorStateClass.MEASUREMENT,
     },
@@ -70,8 +69,8 @@ SENSOR_TYPES: Final[dict[str, SensorDescription]] = {
         ATTR_DEVICE_CLASS: SensorDeviceClass.PRESSURE,
         ATTR_ICON: None,
         ATTR_LABEL: "Absolute Pressure",
-        ATTR_UNIT_METRIC: PRESSURE_MBAR,
-        ATTR_UNIT_IMPERIAL: PRESSURE_MBAR,
+        ATTR_UNIT_METRIC: UnitOfPressure.MBAR,
+        ATTR_UNIT_IMPERIAL: UnitOfPressure.MBAR,
         ATTR_ENABLED: True,
         ATTR_STATE_CLASS: SensorStateClass.MEASUREMENT,
     },

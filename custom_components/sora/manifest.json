@@ -6,6 +6,6 @@
   "codeowners": [
     "@firkeuf"
   ],
-  "version": "0.15",
+  "version": "0.16",
   "iot_class": "local_polling"
 }
