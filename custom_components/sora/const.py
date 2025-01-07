@@ -4,13 +4,13 @@ from __future__ import annotations
 from typing import Final, TypedDict
 
 from homeassistant.components.sensor import (
-    ATTR_STATE_CLASS
+    ATTR_STATE_CLASS,
+    SensorStateClass,
+    SensorDeviceClass
 
 )
 
 from homeassistant.const import (
-    SensorStateClass,
-    SensorDeviceClass,
     ATTR_DEVICE_CLASS,
     ATTR_ICON,
     PERCENTAGE,
